@@ -1,0 +1,109 @@
+[
+	{
+		"staticOpen": {
+			"urls": ["http://news.163.com/domestic/"],
+			"requestType": "get"
+		}
+	},
+	
+	{
+		"staticPagination": {
+			"maxPage": 5,
+			"batchPage": 4,
+			"sleepMillis": 1000,
+			"requestType": "get",
+			"strategy": rule,
+			"strategyValue": {
+				"paginationRule": "currentPage + 1",
+				"stdLength": 2,
+				"leftAlign": "0",
+				"paginationUrls": ["http://news.163.com/special/0001124J/guoneinews_(pn).html#headList"]
+			},
+			
+			"innerCommands": [
+				{
+					"staticFetchList": {
+						"byType": "byCss",
+						"typeValue": "div.area-left > div.list-item.clearfix",
+						
+						"innerCommands": [
+							{
+								"staticFetchKVs": {
+									"fetchValueWithKeys": [
+										{
+											"field": "title",
+											"byType": "byCss",
+											"typeValue": "h2 > a",
+											"byAttr": "innerText"
+										},
+										{
+											"field": "url",
+											"byType": "byCss",
+											"typeValue": "h2 > a",
+											"byAttr": "href"
+										}
+									]
+								}
+							}				
+						]
+					}
+				}
+			]
+		}
+	},
+	
+	{
+		"dedup": {
+			"fields": ["url"],
+			"mappingFields": ["_id"],
+			"dedupMeta": {
+				engine: "mongodb",
+				host: "127.0.0.1",
+				port: 27017,
+				database: "dedup",
+				collection: "dedup_news"
+			}
+		}
+	},
+	
+	{
+		"staticHandleList": {
+			"sleepMillis": 1,
+			innerCommands: [
+				{
+					"staticOpen": {"urls": ['$url']}
+				},
+				{
+					"staticFetchKVs": {
+						"fetchValueWithKeys": [
+							{
+								"field": "content",
+								"byType": "byCss",
+								"typeValue": "div#endText",
+								"byAttr": "innerHTML"
+							},
+							{
+								"field": "timeSource",
+								"byType": "byCss",
+								"typeValue": "div.post_time_source",
+								"byAttr": "innerText"
+							}
+						]
+					}
+				}
+			]
+		}
+	},
+	
+	{
+		"store": {
+			"storeMeta": {
+				"engine": "mongodb",
+				"host": "localhost",
+				"port": 27017,
+				"database": "163",
+				"collection": "news"
+			}			
+		}
+	}
+]

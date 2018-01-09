@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta name="renderer" content="webkit">
+		<title>HiKnowledge</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+		<link href="bower_components/jquery-ui/themes/dark-hive/jquery-ui.min.css" rel="stylesheet" type="text/css">
+		<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="bower_components/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+		<link href="css/common.css" rel="stylesheet" type="text/css">
+		<link href="css/default.css" rel="stylesheet" type="text/css">
+		
+	    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="bower_components/nice-validator/dist/jquery.validator.min.js?local=zh-CN"></script>
+
+		<script type="text/javascript" src="js/config.js"></script>
+	    <script type="text/javascript" src="js/common.js"></script>
+	    <script type="text/javascript" src="js/default.js"></script>
+	    <script type="text/javascript" src="js/listDefault.js"></script>
+		<script type="text/javascript" src="js/conftpl.js"></script>
+	</head>
+	
+	<body>
+		<div class="all">
+			<div id="content" class="clearfix"><!--中间内容部分 -->
+				<div class="left-block-box" id="left-block"><!--左侧树 -->
+					<div class="box-controller box-controller-lr">
+						<div class="tab-blue"></div>
+					</div>
+					<div class="left-block scroll-1">
+						<div class="box-container">
+							<div class="logobox">
+								<a href="index.html">
+									<img src="images/logo02.png" height="" class="header-logo">
+								</a>
+							</div>
+							<div class="card-box">
+								<div class="box-title">
+									菜 单
+								</div>
+								<ul class="list-menu">
+									<li>
+										<a href="index.html" target="_self">任 务
+											<i class="fa fa-angle-right"></i>
+										</a>
+									</li>
+									<li>
+										<a href="monitor.html" target="_self">监 控
+											<i class="fa fa-angle-right"></i>
+										</a>
+									</li>
+									<li>
+										<a href="conftpl.html" target="_self">配置模板
+											<i class="fa fa-angle-right"></i>
+										</a>
+									</li>
+									<li>
+										<a href="flowtpl.html" target="_self">流程模板
+											<i class="fa fa-angle-right"></i>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="center-info" id="center-block">
+					<div class="list-box ajaxtable-container" data-method="getDataList">
+						<div class="list-box-head clearfix">
+							<div class="list-box-title fl"><h2>配置模板</h2></div>
+							<div class="list-box-edit fr">
+								<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="createConfTpl();">
+									<i class="fa fa-plus-circle"></i>
+									新建模板
+								</button>
+							</div>
+						</div>
+
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<thead>
+								<tr>
+									<td data-he-name="id">ID</td>
+									<td data-he-name="name">模板名称</td>
+									<td data-he-name="confType" data-he-renderer="rendererConfType">类型</td>
+                                    <td data-he-renderer="gentOptions">操作</td>
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="8">
+										<div class="pagination-outter">
+											<ul class="pagination">
+											</ul>
+										</div>
+									</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+			</div>   
+		</div>
+		<!-- Modal -->
+		<div id="new-conf-box"  style="display:none;">
+			<form class="form-horizontal conf-create-form">
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="conf-name">名称：</label>
+					<div class="col-sm-10">
+						<input type="text" name="name" class="form-control" id="conf-name" placeholder='请输入模版名称'>
+						<input type="hidden" name="id">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="conf-confType">类型：</label>
+					<div class="col-sm-10">
+						<select class="form-control" name="confType" id="conf-confType">
+							<option value="0">静态</option>
+							<option value="1">动态</option>
+						</select>
+					</div>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>

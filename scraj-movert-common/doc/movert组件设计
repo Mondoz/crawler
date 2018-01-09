@@ -1,0 +1,207 @@
+
+1. # 使用浏览器打开网址
+browserOpen:
+	# 运行时参数
+	url: string #
+	
+	urls: array # string
+	formatter: object # 格式器
+	
+
+2. # 使用静态打开网址
+staticOpen:
+	# 运行时参数
+	url: string #
+	
+	urls: array # string
+	requestType: string
+	params: string # post请求参数
+	formatter: object # 格式器
+	
+3. # 输入文本
+browserTypeText:
+	byType: string
+	typeValue: string
+	text: string
+	waitMillis: long
+
+
+4. # 滚动页面
+browserScroll:
+	scrollScript: string # 页面滚动js脚本
+	arguments: list # 参数
+	waitMillis: long
+	
+
+5. # 点击元素
+browserClick:
+	byType: string # [byId/byClass/byCss/byTagName/byName/byLinkText/byPartialLinkText/byXpath/byJavaScript]
+	typeValue: string
+	waitMillis: long # 
+	
+6. # 循环翻页
+browserPagination:
+	maxPage: integer
+	sleepMillis: long
+	
+	waitMillis: long
+	
+	strategy: string # [more/scroll/next]
+	byType: string
+	typeValue: string
+	
+	innerCommands: array
+
+	
+7. # 浏览器提取单个kv
+browserFetchKV:
+	# 运行时参数
+	dependencyWebElement: object # option 依赖的WebElement  可能为null或者列表中某个WebElement
+	
+	field: string # option 字段名
+	byType: string # [byId/byClass/byCss/byTagName/byName/byLinkText/byPartialLinkText/byXpath/byConstant]
+	typeValue: string # 可以引用内部的值 byConstant的时候可以引用内部的值 [$tt--毫秒时间戳(long), $tts--秒时间戳(long), $time--yyyy-MM-dd HH:mm:ss(string), $date--yyyy-MM-dd(string)]
+	
+	byAttr: string # [innerHTML/innerText/outerHTML/href/src/title/id/class/name/tagName]
+	group: integer # byRegex的group
+	formatter: object # 格式器
+	valueType: string # 数据转型 [string/integer/long/float/double]
+	
+	
+8. # 静态提取kv
+staticFetchKV:
+	# 运行时参数
+	dependencySource: string #
+	
+	field: string # option 字段名
+	byType: string # [byXpath/byRegex/byCss/byCommon/byConstant]
+	typeValue: string # 可以引用内部的值 byConstant的时候可以引用内部的值 [$tt--毫秒时间戳(long), $tts--秒时间戳(long), $time--yyyy-MM-dd HH:mm:ss(string), $date--yyyy-MM-dd(string)]
+	
+	byAttr: string # [innerHTML/innerText/outerHTML/href/src/title/id/class/name/tagName]
+	group: integer # byRegex的group
+	formatter: object # 格式器
+	valueType: string # 数据转型 [string/integer/long/float/double]
+
+
+9. # 浏览器提取多个kv
+browserFetchKVs:
+	# 运行时参数
+	dependencyWebElement: object #
+	
+	fetchValueWithKeys: array # type of fetchKVWithBrowser
+	
+	
+10. # 静态提取多个kv
+staticFetchKVs:
+	# 运行时参数
+	dependencySource: string #
+	
+	includeSource: boolean # 是否包含源码
+	
+	fetchValueWithKeys: array # type of fetchKVWithStatic
+
+
+11. # 浏览器提取列表
+browserFetchList:
+	# 运行时参数
+	actualListIndex: integer # 
+	dependencyWebElement: object # option 依赖的WebElement  可能为null或者列表中某个WebElement
+	
+	
+	field: string # option 字段名称  这个一般情况下都不需要填写  如果写了  存储的时候会把提取到的这个列表放入到这个field下面
+	
+	byType: string # [byId/byClass/byCss/byTagName/byName/byLinkText/byPartialLinkText/byXpath/byConstant]
+	typeValue: string # 可以引用内部的值 byConstant的时候可以引用内部的值 [$tt--毫秒时间戳(long), $tts--秒时间戳(long), $time--yyyy-MM-dd HH:mm:ss(string), $date--yyyy-MM-dd(string)]
+	
+	innerCommands: array # 提取列表的具体数据
+	
+
+
+12 # 静态提取列表
+staticFetchList:
+	# 运行时参数
+	dependencySource: string #
+	
+	
+	field: string # option 字段名称  这个一般情况下都不需要填写  如果写了  存储的时候会把提取到的这个列表放入到这个field下面
+	
+	byType: string # 创建列表的方式 [byCss/byRegex/byXpath]
+	typeValue: string # byType的值
+	
+	innerCommands: array # 提取列表的具体数据
+
+
+13. # 列表处理
+browserHandleList:
+	sleepMillis: long # 睡眠毫秒数
+	innerCommands: array #
+
+
+# 附件1. 去重
+dedup: 
+	# 运行时参数
+	kvList: array # 
+	
+	fields: array # 去重字段
+	mappingFields: array # 和数据表字段的映射 
+	
+	dedupMeta: object# one of jdbc/mongodb/redis
+	jdbc:
+		engine: string # 固定值 jdbc 
+		driver: string
+		url: string
+		user: string
+		password: string
+		table: string
+	mongodb:
+		engine: string # 固定值 mongodb 
+		host: string
+		port: int
+		user: string
+		password: string
+		database: string
+		collection: string
+	redis: # redis使用set结构排重  只能使用单个字段进行排重
+		engine: string # 固定值 redis 
+		host: string
+		port: int
+		dbIndex: int # Select the DB with having the specified zero-based numeric index. New connections always use DB 0.
+		key: string # 排重set的key
+		
+# 附件2. 存储
+store:
+	# 运行时参数
+	kvList: array # 
+
+	fields: array # option 提取的字段
+	mappingFields: array # 
+	
+	storeMeta: object #
+	mongodb:
+		engine: string # 固定值 mongodb 
+		host: string
+		port: int
+		user: string
+		password: string
+		database: string
+		collection: string
+	elasticsearch:
+		engine: string # 固定值 elasticsearch 
+		clusterName: string
+		host: string
+		port: int
+		index: string
+		type: string
+	jdbc:
+		engine: string # 固定值 jdbc 
+		driver: string
+		url: string
+		user: string
+		password: string
+		table: string
+	api:
+		engine: string # 固定值 api 
+		url: string
+		params: string # post参数 k1=v1;k2=v2
+		query: string # 内置参数  $tt--毫秒时间戳 $tts--秒时间戳
+	

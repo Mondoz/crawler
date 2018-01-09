@@ -1,0 +1,209 @@
+
+# 1. 打开网址
+staticOpen:
+	# 运行时参数
+	url: string #
+	
+	urls: array # string
+	charset: string
+	requestType: string
+	params: string # post请求参数
+	formatter: object # 格式器
+	
+
+# 2. 循环翻页
+staticPagination:
+	# 运行时参数
+	dependencySource: string #
+	currentPage: integer # 当前页码 从1开始
+	
+	maxPage: integer # 最大页数
+	splitPage: integer # 多少页切分一次
+	batchPage: integer # 多少页提交一次
+	sleepMillis: long # 每一页睡眠时间
+		
+	requestType: string # 请求方式
+	params: string # post请求参数
+	
+	# 翻页元信息
+	paginationMeta: object # rule/next
+	rule = {
+		# 运行时参数
+		paginationUrl: string # 使用(pn)作为占位符的url
+		
+		strategy: string # 固定rule
+		paginationUrls: array # 计算下一页  和urls对应
+		paginationRule: string # 计算下一页码的数学表达式  可以使用内置变量currentPage  或者  自己提取的变量   numFromPage
+		numFromPage: string # 用于提取这个数字的正则表达式  取编号为1的group  0-整个正则结果  1-第一个group结果
+		stdLength: integer # 页码标准长度
+		leftAlign: string # 左边补齐用的字符   填一个字符
+		rightAlign: string # 右边补齐用的字符  填一个字符
+	}
+	next = {
+		strategy: string # 固定next
+		byType: string #[byCss/byRegex/byXpath]
+		typeValue: string
+		formatter: object #
+	}
+	
+	innerCommands: array # 循环翻页内部命令
+
+# 3. 采集单个字段
+staticFetchKV:
+	# 运行时参数
+	dependencySource: string #
+	
+	field: string # option 字段名
+	byType: string # [byXpath/byRegex/byCss/byCommon/byConstant]
+	typeValue: string # 可以引用内部的值 byConstant的时候可以引用内部的值 [$tt--毫秒时间戳(long), $tts--秒时间戳(long), $time--yyyy-MM-dd HH:mm:ss(string), $date--yyyy-MM-dd(string)]
+	
+	byAttr: string # [innerHTML/innerText/outerHTML/href/src/title/id/class/name/tagName]
+	group: integer # byRegex的group
+	formatter: object # 格式器
+	valueType: string # 数据转型 [string/integer/long/float/double]
+
+
+# 4. 采集对象
+staticFetchKVs:
+	# 运行时参数
+	dependencySource: string #
+	
+	includeSource: boolean # 是否包含源码
+	
+	fetchValueWithKeys: array # type of fetchValue
+
+
+# 5. 采集列表
+staticFetchList:
+	# 运行时参数
+	dependencySource: string #
+	
+	
+	field: string # option 字段名称  这个一般情况下都不需要填写  如果写了  存储的时候会把提取到的这个列表放入到这个field下面
+	
+	byType: string # 创建列表的方式 [byCss/byRegex/byXpath]
+	typeValue: string # byType的值
+	
+	innerCommands: array # 提取列表的具体数据
+
+# 6. 列表处理
+staticHandleList:
+	# 运行时参数
+	kvList: array # 
+
+	sleepMillis: long # 睡眠毫秒数
+	innerCommands: array #
+
+
+#
+
+
+# 附件1. 去重
+dedup: 
+	# 运行时参数
+	kvList: array # 
+	
+	fields: array # 去重字段
+	mappingFields: array # 和数据表字段的映射 
+	
+	dedupMeta: object# one of jdbc/mongodb/redis
+	jdbc:
+		engine: string # 固定值 jdbc 
+		driver: string
+		url: string
+		user: string
+		password: string
+		table: string
+	mongodb:
+		engine: string # 固定值 mongodb 
+		host: string
+		port: int
+		user: string
+		password: string
+		database: string
+		collection: string
+	redis: # redis使用set结构排重  只能使用单个字段进行排重
+		engine: string # 固定值 redis 
+		host: string
+		port: int
+		dbIndex: int # Select the DB with having the specified zero-based numeric index. New connections always use DB 0.
+		key: string # 排重set的key
+		
+# 附件2. 存储
+store:
+	# 运行时参数
+	kvList: array # 
+
+	fields: array # option 提取的字段
+	mappingFields: array # 
+	
+	storeMeta: object #
+	mongodb:
+		engine: string # 固定值 mongodb 
+		host: string
+		port: int
+		user: string
+		password: string
+		database: string
+		collection: string
+	elasticsearch:
+		engine: string # 固定值 elasticsearch 
+		clusterName: string
+		host: string
+		port: int
+		index: string
+		type: string
+	jdbc:
+		engine: string # 固定值 jdbc 
+		driver: string
+		url: string
+		user: string
+		password: string
+		table: string
+	api:
+		engine: string # 固定值 api 
+		url: string
+		params: string # post参数 k1=v1;k2=v2
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

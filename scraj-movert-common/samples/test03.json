@@ -1,0 +1,88 @@
+[
+	{
+		"browserOpen": {
+			"urls": ['http://36kr.com/']
+		}
+	},
+	
+	
+	{
+		"browserPagination": {
+			"maxPage": 1,
+			"batchPage": 5,
+			"sleepMillis": 1000,
+			
+			"waitMillis": 1000,
+			"strategy": "next",
+			"byType": "byCss",
+			"typeValue": "div.page-wrap.clearfix > p > a:nth-last-child(2)",
+			"innerCommands": [
+				{
+					"browserFetchList": {
+						"byType": "byCss",
+						"typeValue": "div.kr_article_list > div > ul > li",
+						
+						"innerCommands": [
+							{
+								"browserFetchKVs": {
+									"fetchValueWithKeys": [
+										{
+											"field": "title",
+											"byType": "byCss",
+											"typeValue": "div.img_box > a",
+											"byAttr": "innerText"
+										},
+										{
+											"field": "url",
+											"byType": "byCss",
+											"typeValue": "div.img_box > a",
+											"byAttr": "href"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	},
+	
+	
+	{
+		"browserHandleList": {
+			"sleepMillis": 1000,
+			"innerCommands": [
+				{
+					"staticOpen": {"urls": ['$url']}
+				},
+				{
+					"staticFetchKVs": {
+						"fetchValueWithKeys": [
+							{
+								"field": "time",
+								"byType": "byCss",
+								"typeValue": "#page-tools > span > span.titer",
+								"byAttr": "innerText"
+							},
+							{
+								"field": "source",
+								"byType": "byCss",
+								"typeValue": "#media_name > a.ent1.fred",
+								"byAttr": "innerText"
+							},
+							{
+								"field": "content",
+								"byType": "byCss",
+								"typeValue": "div#artibody",
+								"byAttr": "outerHTML"
+							}
+						]
+					}
+				}
+			]
+		}
+	}
+
+
+]

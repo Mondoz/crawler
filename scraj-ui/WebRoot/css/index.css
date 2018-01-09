@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* 常用于按钮hover时底色*/
+/* 用于头部导航选中时底色，左侧树菜单搜索功能区底色*/
+/* 常用于添加任务、创建新体系等突出区域*/
+.task-create-form .form-group {
+  margin-bottom: 5px;
+}
+.task-create-form .form-group > label {
+  padding-right: 0;
+  padding-left: 0;
+  padding-top: 5px;
+}
+.task-create-form .form-group .form-control {
+  padding: 4px 10px;
+  height: 30px;
+  border-radius: 2px;
+  box-shadow: none;
+}
+.task-create-form .form-group textarea.form-control {
+  height: 80px;
+  resize: none;
+}

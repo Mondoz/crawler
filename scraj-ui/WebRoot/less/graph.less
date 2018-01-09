@@ -1,0 +1,224 @@
+@charset "utf-8";
+@import "less-common.less";
+
+.process-step {
+  .ui-resizable-se {
+    background: none;
+  }
+  &.on{
+    box-shadow: 0 0 5px #fff;
+  }
+}
+
+.card-box-component {
+  >ul {
+    li {
+      text-align: center;
+      min-width: 100px;
+      width: 50%;
+      float: left;
+      padding: 10px 0;
+      cursor: pointer;
+      i {
+        display: block;
+        font-size: 24px;
+        margin-bottom: 5px;
+      }
+      &:hover {
+        color: @hover-color;
+        background: @leftnav-bgcolor-hover;
+      }
+    }
+  }
+}
+
+.card-box-template {
+  >ul {
+    li {
+      height: 32px;
+      line-height: 32px;
+      padding: 0 10px;
+      cursor: pointer;
+      &:hover {
+        background-color: @leftnav-bgcolor-hover;
+        color: @hover-color;
+      }
+      i {
+        font-size: 12px;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.box-title>.btn-default{
+  color: #fff;
+  background-color: @hover-color;
+  border-color: @main-color;
+  &:hover {
+    color: #fff;
+    background-color: @main-color;
+    border-color: @main-color;
+  }
+}
+
+.j-e{
+  position: absolute;
+  top: 39px;
+  bottom: 0;
+  width: 100%;
+  >div[data-schemaid=root]>h3,>div[data-schemaid=root]>p{
+    display:none;
+  }
+  h3{
+    font-size:14px;
+  }
+  .list-group-item{
+    background: none;
+    border: 1px solid #666;
+    color: rgb(170,170,170);
+    padding: 5px;
+  }
+  .list-group-item:hover{
+    color: #fff;
+    background: none;
+    border-color: #666;
+    span{
+      color:#fff;
+    }
+  }
+  .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover{
+    z-index: 2;
+    color: #fff;
+    background-color: #62b6ec;
+    border-color: #62b6ec;
+  }
+  .well{
+    background:none;
+    overflow: hidden;
+    border-radius: 0;
+    border-width: 0;
+    padding:9px!important;
+    border-color: @right-line;
+    .well{
+      margin-top:8px;
+      border-width:1px;
+    }
+    .row>.col-md-12 .well{
+      >.btn-group{
+        >.btn-default{
+          color: #fff;
+          background-color: @hover-color;
+          border-color: @main-color;
+          &:hover {
+            background-color: @main-color;
+            border-color: @main-color;
+          }
+        }
+        >button:nth-child(2){
+          display: none;
+        }
+      }
+      h3>.btn-group{
+        >.btn-default{
+          color: @right-item-title;
+          background-color: transparent;
+          border-color: transparent;
+          padding: 2px 7px;
+          font-size: 0;
+          height: 26px;
+          width: 26px;
+          i{
+            font-size: 14px;
+          }
+          &:hover {
+            color: @hover-color;
+          }
+          &:focus {
+            background-color: transparent;
+            border-color: transparent;
+          }
+          &:active {
+            background-color: transparent;
+            border-color: transparent;
+          }
+        }
+      }
+      >div>.well{
+        padding: 0!important;
+        border: 0;
+        border-bottom: 1px dashed @right-line;
+        margin-bottom: 10px;
+        padding-bottom: 10px!important;
+        position: relative;
+        .form-group{
+          padding-right: 26px;
+          margin-bottom: 0;
+          width: 100%;
+          >label.control-label{
+            position: absolute;
+            top: 3px;
+            left: 0;
+            display: none;
+          }
+          >input.form-control{
+            width: 100%;
+          }
+        }
+        >.btn-group{
+          position: absolute;
+          top: 0;
+          right: 0;
+          >.btn-default{
+            color: @right-item-title;
+            background-color: transparent;
+            border-color: transparent;
+            padding: 2px 7px;
+            font-size: 0;
+            height: 26px;
+            width: 26px;
+            i{
+              font-size: 14px;
+            }
+            &:hover {
+              color: @hover-color;
+            }
+            &:focus {
+              background-color: transparent;
+              border-color: transparent;
+            }
+            &:active {
+              background-color: transparent;
+              border-color: transparent;
+            }
+          }
+        }
+      }
+    }
+  }
+  button{
+    padding:3px 6px;
+  }
+  .form-control{
+    color:@leftnav-title;
+    border-color: @right-input;
+    background-color: @right-input;
+    border-radius: 2px;
+    padding:3px;
+    &:hover{
+      border-color: @hover-color;
+    }
+  }
+  select.form-control{
+    border-color: @right-input!important;
+    background-color: @right-input!important;
+    min-width: 80px!important;
+    &:hover{
+      border-color: @hover-color!important;
+    }
+  }
+  option{
+    background:@right-input;
+  }
+}
+

@@ -1,0 +1,108 @@
+[
+	{
+		"browserOpen": {
+			"urls": ['http://mil.news.sina.com.cn/jssd/']
+		}
+	},
+	
+	
+	{
+		"browserPagination": {
+			"maxPage": 3,
+			"sleepMillis": 1000,
+			
+			"waitMillis": 1000,
+			"strategy": "next",
+			"byType": "byCss",
+			"typeValue": "div.page-wrap.clearfix > p > a:nth-last-child(2)",
+			"innerCommands": [
+				{
+					"browserScroll": {
+						"scrollScript": "window.scrollTo(0, document.body.scrollHeight);",
+						"waitMillis": 2000
+					}
+				
+				},
+				{
+					"browserScroll": {
+						"scrollScript": "window.scrollTo(0, document.body.scrollHeight);",
+						"waitMillis": 2000
+					}
+				
+				},
+				{
+					"browserScroll": {
+						"scrollScript": "window.scrollTo(0, document.body.scrollHeight);",
+						"waitMillis": 2000
+					}
+				
+				},
+				{
+					"browserFetchList": {
+						"byType": "byCss",
+						"typeValue": "div.bc.w-list > div.blk_tw.clearfix",
+						
+						"innerCommands": [
+							{
+								"browserFetchKVs": {
+									"fetchValueWithKeys": [
+										{
+											"field": "title",
+											"byType": "byCss",
+											"typeValue": "h3 > a",
+											"byAttr": "innerText"
+										},
+										{
+											"field": "url",
+											"byType": "byCss",
+											"typeValue": "h3 > a",
+											"byAttr": "href"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	},
+	
+	
+	{
+		"browserHandleList": {
+			"sleepMillis": 1000,
+			"innerCommands": [
+				{
+					"staticOpen": {"urls": ['$url']}
+				},
+				{
+					"staticFetchKVs": {
+						"fetchValueWithKeys": [
+							{
+								"field": "time",
+								"byType": "byCss",
+								"typeValue": "#page-tools > span > span.titer",
+								"byAttr": "innerText"
+							},
+							{
+								"field": "source",
+								"byType": "byCss",
+								"typeValue": "#media_name > a.ent1.fred",
+								"byAttr": "innerText"
+							},
+							{
+								"field": "content",
+								"byType": "byCss",
+								"typeValue": "div#artibody",
+								"byAttr": "outerHTML"
+							}
+						]
+					}
+				}
+			]
+		}
+	}
+
+
+]

@@ -1,0 +1,207 @@
+@charset "utf-8";
+/* 常用于按钮hover时底色*/
+/* 用于头部导航选中时底色，左侧树菜单搜索功能区底色*/
+/* 常用于添加任务、创建新体系等突出区域*/
+.process-step .ui-resizable-se {
+  background: none;
+}
+.process-step.on {
+  box-shadow: 0 0 5px #fff;
+}
+.card-box-component > ul li {
+  text-align: center;
+  min-width: 100px;
+  width: 50%;
+  float: left;
+  padding: 10px 0;
+  cursor: pointer;
+}
+.card-box-component > ul li i {
+  display: block;
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+.card-box-component > ul li:hover {
+  color: #62b6ec;
+  background: #666666;
+}
+.card-box-template > ul li {
+  height: 32px;
+  line-height: 32px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+.card-box-template > ul li:hover {
+  background-color: #666666;
+  color: #62b6ec;
+}
+.card-box-template > ul li i {
+  font-size: 12px;
+  margin-right: 5px;
+}
+.box-title > .btn-default {
+  color: #fff;
+  background-color: #62b6ec;
+  border-color: #328dcc;
+}
+.box-title > .btn-default:hover {
+  color: #fff;
+  background-color: #328dcc;
+  border-color: #328dcc;
+}
+.j-e {
+  position: absolute;
+  top: 39px;
+  bottom: 0;
+  width: 100%;
+}
+.j-e > div[data-schemaid=root] > h3,
+.j-e > div[data-schemaid=root] > p {
+  display: none;
+}
+.j-e h3 {
+  font-size: 14px;
+}
+.j-e .list-group-item {
+  background: none;
+  border: 1px solid #666;
+  color: #aaaaaa;
+  padding: 5px;
+}
+.j-e .list-group-item:hover {
+  color: #fff;
+  background: none;
+  border-color: #666;
+}
+.j-e .list-group-item:hover span {
+  color: #fff;
+}
+.j-e .list-group-item.active,
+.j-e .list-group-item.active:focus,
+.j-e .list-group-item.active:hover {
+  z-index: 2;
+  color: #fff;
+  background-color: #62b6ec;
+  border-color: #62b6ec;
+}
+.j-e .well {
+  background: none;
+  overflow: hidden;
+  border-radius: 0;
+  border-width: 0;
+  padding: 9px!important;
+  border-color: #666666;
+}
+.j-e .well .well {
+  margin-top: 8px;
+  border-width: 1px;
+}
+.j-e .well .row > .col-md-12 .well > .btn-group > .btn-default {
+  color: #fff;
+  background-color: #62b6ec;
+  border-color: #328dcc;
+}
+.j-e .well .row > .col-md-12 .well > .btn-group > .btn-default:hover {
+  background-color: #328dcc;
+  border-color: #328dcc;
+}
+.j-e .well .row > .col-md-12 .well > .btn-group > button:nth-child(2) {
+  display: none;
+}
+.j-e .well .row > .col-md-12 .well h3 > .btn-group > .btn-default {
+  color: #aaaaaa;
+  background-color: transparent;
+  border-color: transparent;
+  padding: 2px 7px;
+  font-size: 0;
+  height: 26px;
+  width: 26px;
+}
+.j-e .well .row > .col-md-12 .well h3 > .btn-group > .btn-default i {
+  font-size: 14px;
+}
+.j-e .well .row > .col-md-12 .well h3 > .btn-group > .btn-default:hover {
+  color: #62b6ec;
+}
+.j-e .well .row > .col-md-12 .well h3 > .btn-group > .btn-default:focus {
+  background-color: transparent;
+  border-color: transparent;
+}
+.j-e .well .row > .col-md-12 .well h3 > .btn-group > .btn-default:active {
+  background-color: transparent;
+  border-color: transparent;
+}
+.j-e .well .row > .col-md-12 .well > div > .well {
+  padding: 0!important;
+  border: 0;
+  border-bottom: 1px dashed #666666;
+  margin-bottom: 10px;
+  padding-bottom: 10px!important;
+  position: relative;
+}
+.j-e .well .row > .col-md-12 .well > div > .well .form-group {
+  padding-right: 26px;
+  margin-bottom: 0;
+  width: 100%;
+}
+.j-e .well .row > .col-md-12 .well > div > .well .form-group > label.control-label {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  display: none;
+}
+.j-e .well .row > .col-md-12 .well > div > .well .form-group > input.form-control {
+  width: 100%;
+}
+.j-e .well .row > .col-md-12 .well > div > .well > .btn-group {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.j-e .well .row > .col-md-12 .well > div > .well > .btn-group > .btn-default {
+  color: #aaaaaa;
+  background-color: transparent;
+  border-color: transparent;
+  padding: 2px 7px;
+  font-size: 0;
+  height: 26px;
+  width: 26px;
+}
+.j-e .well .row > .col-md-12 .well > div > .well > .btn-group > .btn-default i {
+  font-size: 14px;
+}
+.j-e .well .row > .col-md-12 .well > div > .well > .btn-group > .btn-default:hover {
+  color: #62b6ec;
+}
+.j-e .well .row > .col-md-12 .well > div > .well > .btn-group > .btn-default:focus {
+  background-color: transparent;
+  border-color: transparent;
+}
+.j-e .well .row > .col-md-12 .well > div > .well > .btn-group > .btn-default:active {
+  background-color: transparent;
+  border-color: transparent;
+}
+.j-e button {
+  padding: 3px 6px;
+}
+.j-e .form-control {
+  color: #dddddd;
+  border-color: #888888;
+  background-color: #888888;
+  border-radius: 2px;
+  padding: 3px;
+}
+.j-e .form-control:hover {
+  border-color: #62b6ec;
+}
+.j-e select.form-control {
+  border-color: #888888 !important;
+  background-color: #888888 !important;
+  min-width: 80px!important;
+}
+.j-e select.form-control:hover {
+  border-color: #62b6ec !important;
+}
+.j-e option {
+  background: #888888;
+}

@@ -1,0 +1,30 @@
+@charset "utf-8";
+@import "less-common.less";
+
+
+.search-container{
+  .form-group {
+    .form-control{
+      height: 34px;
+      border-radius: 2px;
+      width: 186px;
+      box-shadow: none;
+      border: 1px solid @right-input;
+      border-right: 0;
+      background: @right-input;
+      color: @leftnav-title;
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      &:hover{
+        border-color: @hover-color;
+      }
+    }
+  }
+  .search-button{
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    i{
+      vertical-align: -1px;
+    }
+  }
+}

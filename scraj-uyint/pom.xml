@@ -1,0 +1,158 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.hiekn.scraj</groupId>
+	<artifactId>uyint</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>uyint</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.source>1.7</maven.compiler.source>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>nexus-central</id>
+			<url>http://192.168.1.201:8081/nexus/content/repositories/central/</url>
+		</repository>
+		<repository>
+			<id>nexus-releases</id>
+			<url>http://192.168.1.201:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<repository>
+			<id>nexus-snapshots</id>
+			<url>http://192.168.1.201:8081/nexus/content/repositories/snapshots/</url>
+		</repository>
+		<repository>
+			<id>sonatype</id>
+			<url>https://oss.sonatype.org/service/local/</url>
+		</repository>
+		<repository>
+			<id>jfrog</id>
+			<url>http://repo.jfrog.org/artifactory/api/</url>
+		</repository>
+		<repository>
+			<id>jboss</id>
+			<url>https://repository.jboss.org/nexus/service/local/</url>
+		</repository>
+		<repository>
+			<id>repo1</id>
+			<url>http://repo1.maven.org/maven2/</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+
+		<!-- compile dependency -->
+		<!--apache log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-nop</artifactId>
+			<version>1.7.21</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz</artifactId>
+		    <version>2.2.3</version>
+		</dependency>
+		<!-- scraj-common -->
+		<dependency>
+			<groupId>com.hiekn.scraj</groupId>
+			<artifactId>scraj-common</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+
+		<!-- uyint-common -->
+		<dependency>
+			<groupId>com.hiekn.scraj.uyint</groupId>
+			<artifactId>uyint-common</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+
+		<!-- test dependency -->
+		<!-- junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-compiler-plugin</artifactId> 
+				<version>3.5</version> <configuration> <source>1.7</source> <target>1.7</target> 
+				</configuration> </plugin> -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+
+			<!-- 导出依赖的jar到某个目录 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.10</version>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>false</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+							<excludeGroupIds>junit</excludeGroupIds>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- 源码打包成jar <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-source-plugin</artifactId> 
+				<version>3.0.0</version> <configuration> <outputDirectory>${project.build.directory}</outputDirectory> 
+				<finalName>${project.name}</finalName> <attach>false</attach> </configuration> 
+				</plugin> -->
+
+			<!-- 生成runnale jar包 插件配置 -->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-shade-plugin</artifactId> 
+				<version>2.4.3</version> <executions> <execution> <phase>package</phase> 
+				<goals> <goal>shade</goal> </goals> <configuration> <transformers> <transformer 
+				implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"> 
+				<mainClass>com.hiekn.uyint.spider.runner.UyintRunner</mainClass> </transformer> 
+				</transformers> </configuration> </execution> </executions> </plugin> -->
+		</plugins>
+	</build>
+
+	<!-- 发布到中央仓库 -->
+	<!-- 这里配置好以后，需要修改maven的setting 在<servers>节点加入两个server <server> <id>nexus-releases</id> 
+		<username>admin</username> <password>admin123</password> </server> <server> 
+		<id>nexus-snapshots</id> <username>admin</username> <password>admin123</password> 
+		</server> 新加入的server 的 id 必须与distributionManagement配置的repository的id一样 <distributionManagement> 
+		<repository> <id>nexus-releases</id> <name>Nexus Release Repository</name> 
+		<url>http://192.168.1.201:8081/nexus/content/repositories/releases/</url> 
+		</repository> <snapshotRepository> <id>nexus-snapshots</id> <name>Nexus Snapshot 
+		Repository</name> <url>http://192.168.1.201:8081/nexus/content/repositories/snapshots/</url> 
+		</snapshotRepository> </distributionManagement> -->
+</project>

@@ -1,0 +1,33 @@
+
+
+Built in properties
+${basedir} represents the directory containing pom.xml
+${version} equivalent to ${project.version} or ${pom.version}
+
+Pom/Project properties
+All elements in the pom.xml, can be referenced with the project. prefix or using pom. as prefix. This list is just an example of some commonly used elements.
+
+${project.build.directory} results in the path to your "target" dir, this is the same as ${pom.project.build.directory}
+${project.build.outputDirectory} results in the path to your "target/classes" dir
+${project.name} or ${pom.name} refers to the name of the project.
+${project.version} or ${pom.version} refers to the version of the project.
+${project.build.finalName} refers to the final name of the file created when the built project is packaged
+
+Local user settings
+Similarly, values in the user's settings.xml can be referenced using property names with settings. prefix.
+${settings.localRepository} refers to the path of the user's local repository
+
+Environment variables
+Environment variables can be referenced using the env prefix
+${env.M2_HOME} returns the Maven2 installation path.
+${java.home} specifies the path to the current JRE_HOME environment use with relative paths to get for example:
+${java.home}../bin/java.exe
+
+
+
+<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+<scriptSourceDirectory>${basedir}/src/main/scripts</scriptSourceDirectory>
+<testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
+<directory>${basedir}/target</directory>
+<outputDirectory>${basedir}/target/classes</outputDirectory>
+<testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>

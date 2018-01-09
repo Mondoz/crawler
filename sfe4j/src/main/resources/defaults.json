@@ -1,0 +1,27 @@
+# 
+# 默认过滤器
+#
+{"name" : "过滤数字", "type": "sfe4j.filter", "regex": "\\d+", "useMulti": true}
+
+
+#
+# 默认查找器
+#
+{"name" : "查找数字", "type" : "sfe4j.finder", "regex" : "\\d+", "group" : 0, "useMulti" : true, "multiSeparator": ";"}
+
+#
+# 默认替换器
+#
+{"name" : "把数字替换成*", "type": "sfe4j.replacer", "regex" : "\\d+", "replacement" : "*", "useMulti" : true}
+
+#
+# 默认截取器
+#
+{"name": "普通截取", "type" : "sfe4j.substring", "beginIndex": 0, "endIndex": 0}
+
+#
+# 默认日期格式化
+#
+{"name": "字符串日期格式化", "type": "sfe4j.time", "timeType": "stringTime"}
+{"name": "毫秒数日期格式化", "type": "sfe4j.time", "timeType": "longTime"}
+

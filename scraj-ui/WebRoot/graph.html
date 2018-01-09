@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta name="renderer" content="webkit">
+		<title>HiKnowledge</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+		<link href="bower_components/jquery-ui/themes/dark-hive/jquery-ui.min.css" rel="stylesheet" type="text/css">
+		<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="bower_components/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+		<link href="lib/css/h_flowdesign.css" rel="stylesheet" type="text/css">
+		<link href="css/common.css" rel="stylesheet" type="text/css">
+		<link href="css/default.css" rel="stylesheet" type="text/css">
+		<link href="css/graph.css" rel="stylesheet" type="text/css">
+		
+	    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="bower_components/json-editor/dist/jsoneditor.min.js"></script>
+		<!--<script type="text/javascript" src="lib/js/jquery.onresize.min.js"></script>-->
+
+		<script type="text/javascript" src="lib/js/jquery.jsPlumb-1.4.0-all.js"></script>
+		<script type="text/javascript" src="lib/js/jquery.contextmenu.r2.js"></script>
+		<script type="text/javascript" src="lib/js/jquery.areaselect.js"></script>
+		<script type="text/javascript" src="lib/js/h_flowdesign.js"></script>
+
+
+	    <script type="text/javascript" src="js/config.js"></script>
+	    <script type="text/javascript" src="js/common.js"></script>
+	    <script type="text/javascript" src="js/default.js"></script>
+		<script type="text/javascript" src="data/components.js"></script>
+		<script type="text/javascript" src="js/graph.js"></script>
+	</head>
+	
+	<body>
+		<div class="all">
+			<div id="content" class="clearfix"><!--中间内容部分 -->
+				<div class="left-block-box" id="left-block"><!--左侧树 -->
+					<div class="box-controller box-controller-lr">
+						<div class="tab-blue"></div>
+					</div>
+					<div class="left-block scroll-1">
+						<div class="box-container">
+							<div class="logobox">
+								<a href="index.html">
+									<img src="images/logo02.png" height="" class="header-logo">
+								</a>
+							</div>
+							<div class="card-box">
+								<div class="box-title">
+									<ul class="two-tab clearfix" id="component-type">
+										<li data-graph-type="1"><a href="#">动态组件</a></li>
+										<li class="active" data-graph-type="0"><a href="#">静态组件</a></li>
+									</ul>
+									<i class="fa fa-angle-down"></i>
+								</div>
+								<div class="card-box-one card-box-component">
+									<ul class="clearfix">
+									</ul>
+								</div>
+							</div>
+							<div class="card-box">
+								<div class="box-title">
+									<ul class="two-tab clearfix" id="template-type">
+										<li data-template-type="conf"><a href="#">配置模板</a></li>
+										<li class="active" data-template-type="flow"><a href="#">流程模板</a></li>
+									</ul>
+									<i class="fa fa-angle-down"></i>
+								</div>
+								<div class="card-box-one card-box-template">
+									<ul class="clearfix">
+
+									</ul>
+									<div class="pagination-outter">
+										<ul class="pagination">
+
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="right-block-box" id="right-block"><!--右侧内容 -->
+					<div class="box-controller box-controller-lr">
+						<div class="tab-blue"></div>
+					</div>
+					<div class="right-block" style="top: 0;">
+
+					</div>
+				</div>	
+				<div class="center-info" id="center-block">
+					<div class="content scroll-1" id="max-content" style="bottom: 0px;">
+
+					</div>
+					<div class="bottom-block-box" id="bottom-block" style="bottom: -200px;">
+						<div class="box-controller box-controller-tb">
+							<div class="tab-blue"></div>
+						</div>
+						<div class="bottom-block scroll-1">
+							<!--<iframe src="empty.html" width="100%" height="100%" frameborder="0" id="view-frame" onload="loadIframe()"></iframe>-->
+						</div>
+					</div>
+				</div>
+			</div>   
+		</div>
+
+		<!-- Modal -->
+		<div id="alertModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+						<h4 class="modal-title" id="alertModalLabel">消息提示</h4>
+					</div>
+					<div class="modal-body">
+						<p>提示内容</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">我知道了</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--contextmenu div-->
+		<div id="processMenu" style="display:none;">
+			<ul>
+				<li id="pmAttribute"><i class="fa fa-cog"></i>&nbsp;<span class="_label">属性</span></li>
+				<li id="pmDelete"><i class="fa fa-trash"></i>&nbsp;<span class="_label">删除</span></li>
+				<li id="pmClear"><i class="fa fa-times-circle-o"></i>&nbsp;<span class="_label">清除连线</span></li>
+				<li id="pmClearSelect"><i class="fa fa-trash-o"></i>&nbsp;<span class="_label">清除选中</span></li>
+			</ul>
+		</div>
+		<div id="canvasMenu" style="display:none;">
+			<ul>
+				<li id="cmTmpSave"><i class="fa fa-floppy-o"></i>&nbsp;<span class="_label">临时保存</span></li>
+				<li id="cmSave"><i class="fa fa-floppy-o"></i>&nbsp;<span class="_label">配置完成</span></li>
+				<li id="cmConfTplSave"><i class="fa fa-floppy-o"></i>&nbsp;<span class="_label">保存模板</span></li>
+				<li id="cmFlowTplSave"><i class="fa fa-floppy-o"></i>&nbsp;<span class="_label">保存流程</span></li>
+				<li id="cmClear"><i class="fa fa-trash-o"></i>&nbsp;<span class="_label">清空</span></li>
+				<li id="cmClearSelect"><i class="fa fa-trash-o"></i>&nbsp;<span class="_label">清除选中</span></li>
+				<li id="cmRefresh"><i class="fa fa-refresh"></i>&nbsp;<span class="_label">刷新 F5</span></li>
+			</ul>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+@charset "utf-8";
+/* 常用于按钮hover时底色*/
+/* 用于头部导航选中时底色，左侧树菜单搜索功能区底色*/
+/* 常用于添加任务、创建新体系等突出区域*/
+.search-container .form-group .form-control {
+  height: 34px;
+  border-radius: 2px;
+  width: 186px;
+  box-shadow: none;
+  border: 1px solid #888;
+  border-right: 0;
+  background: #888;
+  color: #ddd;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+.search-container .form-group .form-control:hover {
+  border-color: #62b6ec;
+}
+.search-container .search-button {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+.search-container .search-button i {
+  vertical-align: -1px;
+}
