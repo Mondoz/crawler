@@ -1,0 +1,47 @@
+version: '3.4'
+services:
+  crawler:
+    image: hiekn.top:1443/crawler:hiekn1.5
+    container_name: mycrawler
+    networks: 
+      app_net:
+        ipv4_address: 192.168.10.50
+    ports:
+     - "8081:8080"
+     - "5901:5901"
+    volumes:
+     - /home/hiekn/install/spider-scraj:/home/hiekn/install/spider-scraj
+  mysql:
+    image: hiekn.top:1443/mysql:5.6.37
+    container_name: mycrawlmysql
+    networks: 
+      app_net:
+        ipv4_address: 192.168.10.51
+    environment:
+      MYSQL_ROOT_PASSWORD: root@ecust4poa
+    ports:
+     - "3307:3306"
+    volumes:
+     - /home/hiekn/install/mysql/data:/mysql_data
+     - /home/hiekn/install/mysql/logs:/logs
+     - /home/hiekn/install/mysql/conf/my.cnf:/etc/mysql/my.cnf
+     - /home/hiekn/install/Shanghai:/etc/localtime
+  mongo:
+    image: hiekn.top:1443/mongo:3.4.6
+    container_name: mycrawlmongo
+    networks: 
+      app_net:
+        ipv4_address: 192.168.10.52
+    ports:
+     - "19130:27017"
+    volumes:
+     - /home/hiekn/install/mongo/db:/data/db   
+     - /home/hiekn/install/Shanghai:/etc/localtime
+networks:
+  app_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 192.168.10.0/24
+ 
